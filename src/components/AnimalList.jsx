@@ -13,7 +13,8 @@ function AnimalList(props) {
                     name={animal.name}
                     adorable={animal.adorable} 
                     key={animalId} 
-                    animalId={animalId} />
+                    animalId={animalId}
+                    onAnimalSelection={props.onAnimalSelection} />
             })}
         <NewAnimalForm onNewAnimalCreation={props.onNewAnimalCreation}/>
         </div>
@@ -22,7 +23,8 @@ function AnimalList(props) {
 
 AnimalList.propTypes = {
     animalList: PropTypes.object,
-    onNewAnimalCreation: PropTypes.func
+    onNewAnimalCreation: PropTypes.func,
+    onAnimalSelection: PropTypes.func
 };
 
 export default AnimalList;

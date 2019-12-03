@@ -10,7 +10,7 @@ function Animal(props) {
     }
 
     return(
-        <div>
+        <div onClick={() => {props.onAnimalSelection(props.animalId);}}>
             <h3>{props.name}</h3>
             {adorable}
         </div>
@@ -20,7 +20,8 @@ function Animal(props) {
 Animal.propTypes = {
     name: PropTypes.string,
     adorable: PropTypes.bool,
-    animalId: PropTypes.string
+    animalId: PropTypes.string,
+    onAnimalSelection: PropTypes.func
 };
 
 export default Animal;

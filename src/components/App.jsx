@@ -59,6 +59,7 @@ class App extends React.Component {
             currentAnimal: null
         };
         this.handleAddingNewAnimal = this.handleAddingNewAnimal.bind(this);
+        this.handleChangingSelectedAnimal = this.handleChangingSelectedAnimal.bind(this);
     }
 
     handleAddingNewAnimal(newAnimal) {
@@ -69,18 +70,23 @@ class App extends React.Component {
         this.setState({masterAnimalList: newMasterAnimalList});
     }
 
+    handleChangingSelectedAnimal(animalId) {
+        this.setState({currentAnimal: animalId});
+    }
 
     render() {
+        console.log('Current Selected Animal: ', this.props.masterAnimalList[this.state.currentAnimal]);
         return (
             <div>
                 <Header/>
                 <div className='container'>
                     <Switch>
-                        <Route exact path='/' render={()=><Animal 
+                        <Route path='/animal' render={()=><Animal 
                             currentAnimal={this.state.currentAnimal} />}/>
-                        <Route path='/all' render={()=><AnimalList 
+                        <Route exact path='/' render={()=><AnimalList 
                             animalList={this.props.masterAnimalList}
-                            onNewAnimalCreation={this.handleAddingNewAnimal} />}/>
+                            onNewAnimalCreation={this.handleAddingNewAnimal}
+                            onAnimalSelection={this.handleChangingSelectedAnimal} />}/>
                     </Switch>
                 </div>
             </div>
