@@ -1,6 +1,5 @@
 import animalListReducer from './../../src/reducers/animal-list-reducer';
 
-
 describe('animalListReducer', () => {
 
     let action;
@@ -30,8 +29,5 @@ describe('animalListReducer', () => {
             }
         });
     });
-
-
-
 
 });
