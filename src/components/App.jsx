@@ -85,6 +85,7 @@ class App extends React.Component {
                             currentAnimal={this.state.currentAnimal} />}/>
                         <Route exact path='/' render={()=><AnimalList 
                             animalList={this.props.masterAnimalList}
+                            currentAnimal={this.state.currentAnimal}
                             onNewAnimalCreation={this.handleAddingNewAnimal}
                             onAnimalSelection={this.handleChangingSelectedAnimal} />}/>
                     </Switch>
