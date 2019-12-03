@@ -1,5 +1,6 @@
 import React from 'react';
 import Animal from './Animal';
+import NewAnimalForm from './NewAnimalForm';
 import PropTypes from 'prop-types';
 
 function AnimalList(props) {
@@ -14,12 +15,14 @@ function AnimalList(props) {
                     key={animalId} 
                     animalId={animalId} />
             })}
+        <NewAnimalForm onNewAnimalCreation={props.onNewAnimalCreation}/>
         </div>
     );
 }
 
 AnimalList.propTypes = {
-    animalList: PropTypes.object
+    animalList: PropTypes.object,
+    onNewAnimalCreation: PropTypes.func
 };
 
 export default AnimalList;
