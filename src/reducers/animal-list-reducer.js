@@ -1,4 +1,17 @@
 
 export default (state = {}, action) => {
-    return state;
+    switch (action.type) {
+        case 'ADD_ANIMAL':
+            const { name, adorable, animalId } = action;
+            let newState = Object.assign({}, state, {
+                [animalId] : {
+                    name: name,
+                    adorable: adorable,
+                    animalId: animalId
+                }
+            });
+            return newState;
+        default:
+        return state;
+    }
 };
