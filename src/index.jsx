@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import { HashRouter } from 'react-router-dom';
 import { createStore } from 'redux';
-import reducer from './reducers/animal-list-reducer';
 import { Provider } from 'react-redux';
+import rootReducer from './reducers/index';
 
-const store = createStore(reducer);
+const store = createStore(rootReducer);
+
+let unsubscribe = store.subscribe(() =>
+  console.log('Store: ', store.getState())
+);
 
 const render = (Component) => {
   ReactDOM.render(

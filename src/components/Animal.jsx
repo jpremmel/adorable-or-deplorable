@@ -1,8 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import 'materialize-css/dist/css/materialize.min.css';
 
 function Animal(props) {
+
+    function handleSavingSelectedAnimal(animalId) {
+        const { dispatch } = props;
+        const action = {
+            type: 'SELECT_ANIMAL',
+            animalId: animalId
+        };
+        dispatch(action);
+    }
 
     let adorable;
     if (props.adorable != null) {
@@ -10,7 +20,7 @@ function Animal(props) {
     }
 
     return(
-        <div onClick={() => {props.onAnimalSelection(props.animalId);}}>
+        <div onClick={() => {handleSavingSelectedAnimal(props.animalId);}}>
             <h3>{props.name}</h3>
             {adorable}
         </div>
@@ -20,8 +30,7 @@ function Animal(props) {
 Animal.propTypes = {
     name: PropTypes.string,
     adorable: PropTypes.bool,
-    animalId: PropTypes.string,
-    onAnimalSelection: PropTypes.func
+    animalId: PropTypes.string
 };
 
-export default Animal;
+export default connect()(Animal);

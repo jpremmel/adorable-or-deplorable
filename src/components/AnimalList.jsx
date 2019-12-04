@@ -2,12 +2,12 @@ import React from 'react';
 import Animal from './Animal';
 import NewAnimalForm from './NewAnimalForm';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 function AnimalList(props) {
-    console.log(props.animalList);
 
     let optionalSelectedAnimalContent = null;
-    if (props.currentAnimal != null) {
+    if (props.currentAnimal.length > 0) {
         optionalSelectedAnimalContent = <p><em>Selected Animal: {props.animalList[props.currentAnimal].name}</em></p>
     }
 
@@ -20,19 +20,23 @@ function AnimalList(props) {
                     name={animal.name}
                     adorable={animal.adorable} 
                     key={animalId} 
-                    animalId={animalId}
-                    onAnimalSelection={props.onAnimalSelection} />
+                    animalId={animalId} />
             })}
-        <NewAnimalForm onNewAnimalCreation={props.onNewAnimalCreation}/>
+        <NewAnimalForm />
         </div>
     );
 }
 
 AnimalList.propTypes = {
     animalList: PropTypes.object,
-    currentAnimal: PropTypes.string,
-    onNewAnimalCreation: PropTypes.func,
-    onAnimalSelection: PropTypes.func
+    currentAnimal: PropTypes.string
 };
 
-export default AnimalList;
+const mapStateToProps = state => {
+    return {
+        currentAnimal: state.currentAnimal,
+        animalList: state.masterAnimalList
+    };
+};
+
+export default connect(mapStateToProps)(AnimalList);
